@@ -3,28 +3,28 @@
 
   <!-- Home -->
   <url>
-    <loc>https://mihajlopertrovic.com/</loc>
+    <loc>https://my-portfolio-six-self-85.vercel.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Blog index -->
   <url>
-    <loc>https://mihajlopertrovic.com/blog</loc>
+    <loc>https://my-portfolio-six-self-85.vercel.app/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Blog posts -->
   <url>
-    <loc>https://mihajlopertrovic.com/blog/about-me-from-code-to-career</loc>
+    <loc>https://my-portfolio-six-self-85.vercel.app/blog/about-me-from-code-to-career</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://mihajlopertrovic.com/blog/why-i-chose-angular-2024</loc>
+    <loc>https://my-portfolio-six-self-85.vercel.app/blog/why-i-chose-angular-2024</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -17,7 +17,13 @@ import { ThemeService } from '../../services/theme.service';
 
           <!-- Logo -->
           <a (click)="goHome()" class="flex items-center cursor-pointer">
-            <img src="assets/logov2-removebg-preview.png" alt="Mihajlo Petrovic" class="h-14 sm:h-20 md:h-28 w-auto object-contain">
+            <!-- Mobile: text logo -->
+            <div class="md:hidden flex flex-col leading-none py-1">
+              <span class="font-black text-lg text-gray-900 dark:text-white tracking-tight">Mihajlo <span class="text-primary-500">Petrovic</span></span>
+              <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400 mt-0.5">Software Engineer</span>
+            </div>
+            <!-- Desktop: image logo -->
+            <img src="assets/logov2-removebg-preview.png" alt="Mihajlo Petrovic" class="hidden md:block h-20 md:h-28 w-auto object-contain">
           </a>
 
           <!-- Right: Nav + Theme + Burger -->

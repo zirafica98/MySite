@@ -40,15 +40,15 @@ export class HomeComponent implements OnInit {
       title: 'Mihajlo Petrovic — Software Engineer',
       description:
         'Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.',
-      url: 'https://mihajlopertrovic.com/',
-      image: 'https://mihajlopertrovic.com/assets/logov2-removebg-preview.png',
+      url: 'https://my-portfolio-six-self-85.vercel.app/',
+      image: 'https://my-portfolio-six-self-85.vercel.app/assets/logov2-removebg-preview.png',
       type: 'website'
     });
     this.seo.setTwitterCard({
       title: 'Mihajlo Petrovic — Software Engineer',
       description:
         'Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.',
-      image: 'https://mihajlopertrovic.com/assets/logov2-removebg-preview.png'
+      image: 'https://my-portfolio-six-self-85.vercel.app/assets/logov2-removebg-preview.png'
     });
   }
 }

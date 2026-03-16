@@ -99,13 +99,28 @@ import { trigger, transition, style, animate } from '@angular/animations';
       position: relative;
     }
     :host-context(.dark) .stroke-text {
-      -webkit-text-stroke: 5px #4b5563;
+      -webkit-text-stroke: 5px #6b7280;
     }
     @media (max-width: 1024px) { .stroke-text { -webkit-text-stroke: 4px #9ca3af; } }
     @media (max-width: 768px)  { .stroke-text { -webkit-text-stroke: 3px #9ca3af; } }
-    @media (max-width: 640px)  { .stroke-text { -webkit-text-stroke: 2px #9ca3af; } }
-    @media (max-width: 400px)  { .stroke-text { -webkit-text-stroke: 1.5px #9ca3af; } }
-    :host-context(.dark) .stroke-text { -webkit-text-stroke-color: #4b5563; }
+    @media (max-width: 640px)  {
+      .stroke-text { -webkit-text-stroke: 2.5px #6b7280; }
+    }
+    @media (max-width: 400px)  { .stroke-text { -webkit-text-stroke: 2px #6b7280; } }
+    /* Dark mode mobile — brighter stroke so outline is visible on dark bg */
+    :host-context(.dark) .stroke-text {
+      -webkit-text-stroke-color: #9ca3af;
+    }
+    @media (max-width: 640px) {
+      :host-context(.dark) .stroke-text {
+        -webkit-text-stroke: 2.5px rgba(249, 115, 22, 0.6);
+      }
+    }
+    @media (max-width: 400px) {
+      :host-context(.dark) .stroke-text {
+        -webkit-text-stroke: 2px rgba(249, 115, 22, 0.6);
+      }
+    }
 
     /* Mobile image — compact upper-body crop */
     .mobile-img-wrap {
