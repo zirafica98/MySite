@@ -9,6 +9,8 @@ export interface Project {
   description: string;
   longDescription?: string;
   image?: string;
+  screenshots?: string[];
+  screenshotDevice?: 'ios' | 'android' | 'web';
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
@@ -260,6 +262,39 @@ export interface Project {
             {{ activeProject()!.description }}
           </p>
 
+          <!-- Screenshots gallery -->
+          <div *ngIf="activeProject()!.screenshots?.length" class="mb-8">
+            <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              Screenshots
+            </h3>
+            <div class="flex gap-3 overflow-x-auto pb-3 -mx-1 px-1 snap-x snap-mandatory scroll-smooth"
+                 style="scrollbar-width: thin; scrollbar-color: #f97316 transparent;">
+              <div *ngFor="let shot of activeProject()!.screenshots; let i = index"
+                   (click)="openLightbox(i)"
+                   class="flex-shrink-0 snap-start cursor-zoom-in group relative"
+                   style="width: 120px;">
+                <!-- iOS-style frame -->
+                <div class="relative rounded-[18px] overflow-hidden shadow-lg border-2 border-gray-200 dark:border-gray-700
+                            ring-2 ring-transparent group-hover:ring-primary-400 transition-all duration-200"
+                     style="aspect-ratio: 9/19.5;">
+                  <img [src]="shot" [alt]="'Screenshot ' + (i + 1)"
+                       class="w-full h-full object-cover"
+                       (error)="onScreenshotError($event)">
+                  <!-- Hover overlay -->
+                  <div class="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/20 transition-all duration-200 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-center text-xs text-gray-400 dark:text-gray-500 mt-1.5 font-medium">{{ i + 1 }}</p>
+              </div>
+            </div>
+          </div>
+
           <!-- Tech stack -->
           <div class="mb-6">
             <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">
@@ -307,16 +342,73 @@ export interface Project {
         </div>
       </div>
     </div>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div *ngIf="lightboxIndex() !== null"
+         class="fixed inset-0 z-[200] flex items-center justify-center"
+         (click)="closeLightbox()">
+
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/95 backdrop-blur-md"></div>
+
+      <!-- Image -->
+      <div class="relative z-10 flex items-center gap-4 px-4 max-w-sm w-full"
+           (click)="$event.stopPropagation()">
+
+        <!-- Prev -->
+        <button (click)="prevLightbox()"
+                *ngIf="(activeProject()?.screenshots?.length ?? 0) > 1"
+                class="flex-shrink-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+
+        <!-- Phone frame -->
+        <div class="flex-1 relative rounded-[32px] overflow-hidden shadow-2xl border-4 border-white/10"
+             style="aspect-ratio: 9/19.5; max-height: 80vh;">
+          <img [src]="activeProject()!.screenshots![lightboxIndex()!]"
+               [alt]="'Screenshot ' + (lightboxIndex()! + 1)"
+               class="w-full h-full object-cover">
+          <!-- Screen count pill -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
+            {{ lightboxIndex()! + 1 }} / {{ activeProject()!.screenshots!.length }}
+          </div>
+        </div>
+
+        <!-- Next -->
+        <button (click)="nextLightbox()"
+                *ngIf="(activeProject()?.screenshots?.length ?? 0) > 1"
+                class="flex-shrink-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Close button -->
+      <button (click)="closeLightbox()"
+              class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
   `,
   styles: [`
     :host {
       display: block;
     }
+    /* Custom thin scrollbar for screenshots row */
+    .overflow-x-auto::-webkit-scrollbar { height: 4px; }
+    .overflow-x-auto::-webkit-scrollbar-track { background: transparent; }
+    .overflow-x-auto::-webkit-scrollbar-thumb { background: #f97316; border-radius: 2px; }
   `]
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
   selectedCategory = signal<string>('All');
   activeProject = signal<Project | null>(null);
+  lightboxIndex = signal<number | null>(null);
 
   categories = ['All', 'Web', 'Mobile', 'Full Stack', 'AI'];
 
@@ -340,7 +432,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       category: 'Full Stack',
       year: 2025,
       highlight: true,
-      githubUrl: 'https://github.com/zirafica98/invoice-app'
+      githubUrl: 'https://github.com/zirafica98/invoice-app',
+      liveUrl: 'https://invoice-app-three-bay.vercel.app/'
     },
     {
       id: 5,
@@ -359,7 +452,14 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       technologies: ['SwiftUI', 'Firebase', 'Firestore', 'MapKit', 'CoreLocation', 'Combine', 'Async/Await', 'Google Sign-In', 'Apple Sign-In'],
       category: 'Mobile',
       year: 2024,
-      githubUrl: 'https://github.com/zirafica98/TripPlanner'
+      githubUrl: 'https://github.com/zirafica98/TripPlanner',
+      screenshots: [
+        'assets/iosApp/TripPlanner/1.png',
+        'assets/iosApp/TripPlanner/2.png',
+        'assets/iosApp/TripPlanner/3.png',
+        'assets/iosApp/TripPlanner/4.png'
+      ],
+      screenshotDevice: 'ios'
     },
     {
       id: 4,
@@ -367,7 +467,14 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       description: 'iOS personal budget management app built with SwiftUI and Firebase Firestore. Features a dashboard with pie charts, expense categories with limits, income & savings tracking, credit card installment tracking, shopping list, fixed expenses, and full budget history per month. Bilingual (Serbian/English).',
       technologies: ['SwiftUI', 'Firebase Firestore', 'Firebase SDK', 'MVVM', 'Swift Package Manager', 'Charts'],
       category: 'Mobile',
-      year: 2024
+      year: 2024,
+      screenshots: [
+        'assets/iosApp/MoneyBudget/1.png',
+        'assets/iosApp/MoneyBudget/2.png',
+        'assets/iosApp/MoneyBudget/3.png',
+        'assets/iosApp/MoneyBudget/4.png'
+      ],
+      screenshotDevice: 'ios'
     },
     {
       id: 7,
@@ -411,13 +518,55 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   closeModal() {
+    this.lightboxIndex.set(null);
     this.activeProject.set(null);
     document.body.style.overflow = '';
   }
 
+  openLightbox(index: number) {
+    this.lightboxIndex.set(index);
+  }
+
+  closeLightbox() {
+    this.lightboxIndex.set(null);
+  }
+
+  prevLightbox() {
+    const shots = this.activeProject()?.screenshots;
+    if (!shots) return;
+    const current = this.lightboxIndex() ?? 0;
+    this.lightboxIndex.set((current - 1 + shots.length) % shots.length);
+  }
+
+  nextLightbox() {
+    const shots = this.activeProject()?.screenshots;
+    if (!shots) return;
+    const current = this.lightboxIndex() ?? 0;
+    this.lightboxIndex.set((current + 1) % shots.length);
+  }
+
+  onScreenshotError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    img.style.display = 'none';
+  }
+
   @HostListener('document:keydown.escape')
   onEscapeKey() {
-    this.closeModal();
+    if (this.lightboxIndex() !== null) {
+      this.closeLightbox();
+    } else {
+      this.closeModal();
+    }
+  }
+
+  @HostListener('document:keydown.arrowleft')
+  onArrowLeft() {
+    if (this.lightboxIndex() !== null) this.prevLightbox();
+  }
+
+  @HostListener('document:keydown.arrowright')
+  onArrowRight() {
+    if (this.lightboxIndex() !== null) this.nextLightbox();
   }
 
   countByCategory(cat: string): number {
