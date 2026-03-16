@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/icons/
+
+Sitemap: https://mihajlopertrovic.com/sitemap.xml

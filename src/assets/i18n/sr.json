@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Početna",
+    "blog": "Blog",
+    "about": "O Meni",
+    "projects": "Projekti",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Zdravo, ja sam",
+    "subtitle": "Full Stack Developer & Creative Problem Solver",
+    "projects": "Moji Projekti",
+    "contact": "Kontaktirajte Me",
+    "blog": "Blog"
+  },
+  "about": {
+    "title": "O Meni",
+    "personal": "Lične Informacije",
+    "education": "Obrazovanje",
+    "skills": "Veštine",
+    "downloadCV": "Preuzmi CV"
+  },
+  "projects": {
+    "title": "Moji Projekti",
+    "all": "Svi",
+    "readMore": "Pročitaj više"
+  },
+  "blog": {
+    "title": "Blog",
+    "noPosts": "Nema blog postova za prikaz.",
+    "readMore": "Pročitaj više",
+    "back": "Nazad na blog",
+    "notFound": "Blog post nije pronađen."
+  },
+  "contact": {
+    "title": "Kontaktirajte Me",
+    "name": "Ime",
+    "email": "Email",
+    "message": "Poruka",
+    "send": "Pošalji Poruku",
+    "success": "Hvala! Vaša poruka je poslata. Odgovoriću uskoro.",
+    "findMe": "Pronađite me na:"
+  },
+  "admin": {
+    "login": "Admin Login",
+    "email": "Email",
+    "password": "Password",
+    "dashboard": "Admin Dashboard",
+    "newPost": "Novi Post",
+    "logout": "Logout",
+    "edit": "Edit",
+    "delete": "Delete",
+    "published": "Objavljeno",
+    "draft": "Draft",
+    "save": "Sačuvaj",
+    "cancel": "Otkaži"
+  }
+}

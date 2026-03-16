@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Hello, I'm",
+    "subtitle": "Full Stack Developer & Creative Problem Solver",
+    "projects": "My Projects",
+    "contact": "Contact Me",
+    "blog": "Blog"
+  },
+  "about": {
+    "title": "About Me",
+    "personal": "Personal Information",
+    "education": "Education",
+    "skills": "Skills",
+    "downloadCV": "Download CV"
+  },
+  "projects": {
+    "title": "My Projects",
+    "all": "All",
+    "readMore": "Read more"
+  },
+  "blog": {
+    "title": "Blog",
+    "noPosts": "No blog posts to display.",
+    "readMore": "Read more",
+    "back": "Back to blog",
+    "notFound": "Blog post not found."
+  },
+  "contact": {
+    "title": "Contact Me",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Thank you! Your message has been sent. I'll reply soon.",
+    "findMe": "Find me on:"
+  },
+  "admin": {
+    "login": "Admin Login",
+    "email": "Email",
+    "password": "Password",
+    "dashboard": "Admin Dashboard",
+    "newPost": "New Post",
+    "logout": "Logout",
+    "edit": "Edit",
+    "delete": "Delete",
+    "published": "Published",
+    "draft": "Draft",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
