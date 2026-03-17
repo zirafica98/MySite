@@ -417,6 +417,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       id: 1,
       title: 'NeatCommit — AI Code Review Platform',
       description: 'AI-powered code review and security auditing platform integrated as a GitHub App. Analyzes pull requests using OWASP/CWE rules + GPT-4, delivers inline comments, security scores, and reports. Supports JS, TS, Java, Python, PHP, C#, Go, Ruby and more.',
+      image: 'assets/neatcommit.png',
       technologies: ['Angular 17', 'Node.js', 'Express', 'PostgreSQL', 'Redis', 'BullMQ', 'OpenAI API', 'GitHub App API', 'Prisma', 'Docker', 'TypeScript'],
       category: 'AI',
       year: 2025,
@@ -426,8 +427,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     },
     {
       id: 6,
-      title: 'Invoice App — AI-Powered Invoice Management',
+      title: 'Velo Invoice — AI-Powered Invoice Management',
       description: 'Full-featured invoice management web app with AI-powered invoice generation via OpenAI, client & price list management, recurring invoices, automated email reminders, PDF export, Excel reports (Aging, Sales, Tax), multi-company support, and 5-language i18n. Built with Angular 20 and Firebase.',
+      image: 'assets/velo.png',
       technologies: ['Angular 20', 'Angular Material', 'Firebase', 'Firestore', 'Firebase Auth', 'OpenAI API', 'RxJS', 'TypeScript', 'jsPDF', 'xlsx'],
       category: 'Full Stack',
       year: 2025,
@@ -439,11 +441,12 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       id: 5,
       title: 'Digital Onboarding — Raiffeisen Bank',
       description: 'End-to-end digital onboarding and deposit account opening flow, serving 2,000–3,000 users per month across multiple countries. Built with Angular, C# and Camunda 7 BPM engine for process orchestration.',
+      image: 'assets/rajf.png',
       technologies: ['Angular', 'C#', 'Camunda 7', 'TypeScript', 'FormsEngine', 'REST API'],
       category: 'Web',
       year: 2023,
       highlight: true,
-      liveUrl: 'https://www.raiffeisenbank.rs/digitalno-otvaranje-racuna/'
+      liveUrl: 'https://rol.raiffeisenbank.rs/biznisiracun/DigitalAccountCorporate/NewTransactionAccount'
     },
     {
       id: 3,

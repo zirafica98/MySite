@@ -178,7 +178,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       achievements: [
         'Developed NeatCommit, an AI-powered GitHub App for code review',
         'Built TripPlanner and MoneyBudget iOS apps with SwiftUI + Firebase',
-        'Created Invoice App with AI-assisted invoice generation via OpenAI API',
+        'Created Velo Invoice with AI-assisted invoice generation via OpenAI API',
         'Delivered e-commerce solutions using Magento and custom PHP/Laravel'
       ],
       technologies: ['Angular', 'React', 'Node.js', 'SwiftUI', 'Firebase', 'OpenAI API', 'Magento', 'PHP'],
