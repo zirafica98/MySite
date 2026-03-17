@@ -221,6 +221,8 @@ export interface Project {
              [class]="activeProject()!.highlight
                ? 'bg-gradient-to-br from-gray-950 via-gray-900 to-primary-900'
                : 'bg-gradient-to-br from-gray-900 to-gray-800'">
+          <img *ngIf="activeProject()!.image" [src]="activeProject()!.image" [alt]="activeProject()!.title"
+               class="absolute inset-0 w-full h-full object-cover opacity-60">
           <div class="absolute inset-0 flex items-center justify-center">
             <span class="font-black text-9xl select-none pointer-events-none"
                   [class]="activeProject()!.highlight ? 'text-primary-500/20' : 'text-white/10'">
