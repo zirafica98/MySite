@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BlogService, BlogPost } from '../../../services/blog.service';
+import { SeoService } from '../../../services/seo.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
@@ -88,9 +89,18 @@ export class AdminDashboardComponent implements OnInit {
   posts = signal<BlogPost[]>([]);
   loading = false;
 
-  constructor(private blogService: BlogService) {}
+  constructor(
+    private blogService: BlogService,
+    private seo: SeoService
+  ) {}
 
   ngOnInit() {
+    this.seo.applyPage({
+      title: 'Admin',
+      description: 'Internal content dashboard.',
+      path: '/admin',
+      noIndex: true
+    });
     this.loadPosts();
   }
 

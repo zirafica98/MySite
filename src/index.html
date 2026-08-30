@@ -12,6 +12,9 @@
   <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
   <meta name="theme-color" content="#f97316">
 
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Mihajlo Petrovic — Blog" href="/feed.xml">
+
   <!-- PWA -->
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -37,21 +40,39 @@
   </script>
 
   <!-- SEO -->
+  <link rel="canonical" href="https://mihajlopetrovic.me/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="description" content="Personal portfolio of Mihajlo Petrovic — Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.">
   <meta name="keywords" content="Mihajlo Petrovic, Software Engineer, Angular, TypeScript, Swift, iOS, web developer, Belgrade, Serbia, portfolio">
   <meta name="author" content="Mihajlo Petrovic">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Mihajlo Petrovic">
-  <meta property="og:url" content="https://my-portfolio-six-self-85.vercel.app/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://mihajlopetrovic.me/">
   <meta property="og:title" content="Mihajlo Petrovic — Software Engineer">
   <meta property="og:description" content="Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.">
-  <meta property="og:image" content="https://my-portfolio-six-self-85.vercel.app/assets/logov2-removebg-preview.png">
+  <meta property="og:image" content="https://mihajlopetrovic.me/assets/logov2-removebg-preview.png">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mihajlo Petrovic — Software Engineer">
   <meta name="twitter:description" content="Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.">
-  <meta name="twitter:image" content="https://my-portfolio-six-self-85.vercel.app/assets/logov2-removebg-preview.png">
+  <meta name="twitter:image" content="https://mihajlopetrovic.me/assets/logov2-removebg-preview.png">
+
+  <!-- Structured data (static baseline; routes refine it at runtime via SeoService) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://mihajlopetrovic.me/#person",
+    "name": "Mihajlo Petrovic",
+    "url": "https://mihajlopetrovic.me/",
+    "jobTitle": "Software Engineer",
+    "worksFor": { "@type": "Organization", "name": "Raiffeisen Bank" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Belgrade", "addressCountry": "RS" },
+    "sameAs": ["https://linkedin.com/in/mihajlo-petrovic-355810197/"]
+  }
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->

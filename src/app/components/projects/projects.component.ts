@@ -264,6 +264,17 @@ export interface Project {
             {{ activeProject()!.description }}
           </p>
 
+          <!-- Under the hood -->
+          <div *ngIf="activeProject()!.longDescription"
+               class="mb-8 pl-5 border-l-4 border-primary-500 bg-gray-50 dark:bg-gray-800/50 rounded-r-xl py-4 pr-5">
+            <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">
+              Under the hood
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+              {{ activeProject()!.longDescription }}
+            </p>
+          </div>
+
           <!-- Screenshots gallery -->
           <div *ngIf="activeProject()!.screenshots?.length" class="mb-8">
             <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
@@ -295,6 +306,22 @@ export interface Project {
                 <p class="text-center text-xs text-gray-400 dark:text-gray-500 mt-1.5 font-medium">{{ i + 1 }}</p>
               </div>
             </div>
+          </div>
+
+          <!-- Key features -->
+          <div *ngIf="activeProject()!.features?.length" class="mb-8">
+            <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">
+              Key Features
+            </h3>
+            <ul class="space-y-2.5">
+              <li *ngFor="let feature of activeProject()!.features"
+                  class="flex items-start gap-3 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                <svg class="w-4 h-4 text-primary-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>{{ feature }}</span>
+              </li>
+            </ul>
           </div>
 
           <!-- Tech stack -->
@@ -415,6 +442,29 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   categories = ['All', 'Web', 'Mobile', 'Full Stack', 'AI'];
 
   projects: Project[] = [
+    {
+      id: 8,
+      title: 'Dnevnik trudnoće — Pregnancy Tracker for Serbia',
+      description: 'Serbian-language pregnancy tracking app: week-by-week development from week 4 to 42, a due-date calculator, a private diary for symptoms, weight, mood and contractions, plus appointments and findings in one place. Built around local data — 60 maternity hospitals across Serbia and gynecologists from the Medical Chamber licence registry — because every other app assumes pounds, inches and a healthcare system that is not ours.',
+      longDescription: 'Angular 22 with static prerendering (SSG) for every public route, Tailwind CSS, and a Supabase backend (PostgreSQL + Auth). Privacy is enforced at the database layer: Row Level Security means a user\'s symptoms, weight, notes and messages are unreadable even to the administrator, rather than merely hidden by the UI. Installable as a PWA, with analytics loaded only after explicit consent, and a prerendered sitemap of ~500 URLs covering weeks, cities, names and tools.',
+      image: 'assets/dnevniktrudnoce.png',
+      technologies: ['Angular 22', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Row Level Security', 'Supabase Auth', 'SSG / Prerendering', 'PWA', 'Schema.org JSON-LD'],
+      category: 'Full Stack',
+      year: 2026,
+      highlight: true,
+      liveUrl: 'https://dnevniktrudnoce.com/',
+      features: [
+        'Week-by-week pregnancy guide from week 4 to 42, in Serbian, in kilograms and centimetres',
+        'Due-date calculator that derives the current week from the last period or term date',
+        '60 maternity hospitals across Serbia with addresses, phone numbers and map directions',
+        'Gynecologist directory built from the public Medical Chamber licence registry, with user ratings',
+        'Private diary for symptoms, mood, weight, contractions and therapy — protected by database-level Row Level Security',
+        'Appointments, reminders and a place to keep test results',
+        'Anonymous community Q&A, plus hospital bag and shopping checklists',
+        'Dictionary of 443 baby names with origin and meaning',
+        'Installable PWA with prerendered pages for search visibility and consent-gated analytics'
+      ]
+    },
     {
       id: 1,
       title: 'NeatCommit — AI Code Review Platform',

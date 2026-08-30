@@ -29,26 +29,44 @@ export class HomeComponent implements OnInit {
   constructor(private seo: SeoService) {}
 
   ngOnInit() {
-    this.seo.setPageTitle('Mihajlo Petrovic — Software Engineer');
-    this.seo.setMetaDescription(
-      'Personal portfolio of Mihajlo Petrovic — Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.'
-    );
-    this.seo.setMetaKeywords(
-      'Mihajlo Petrovic, Software Engineer, Angular, TypeScript, Swift, iOS, web developer, Belgrade, Serbia, portfolio'
-    );
-    this.seo.setOpenGraphTags({
+    this.seo.applyPage({
       title: 'Mihajlo Petrovic — Software Engineer',
       description:
-        'Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.',
-      url: 'https://my-portfolio-six-self-85.vercel.app/',
-      image: 'https://my-portfolio-six-self-85.vercel.app/assets/logov2-removebg-preview.png',
-      type: 'website'
+        'Personal portfolio of Mihajlo Petrovic — Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.',
+      path: '/',
+      keywords:
+        'Mihajlo Petrovic, Software Engineer, Angular, TypeScript, Swift, iOS, SwiftUI, AI agents, web developer, Belgrade, Serbia, portfolio'
     });
-    this.seo.setTwitterCard({
-      title: 'Mihajlo Petrovic — Software Engineer',
-      description:
-        'Software Engineer based in Belgrade. Angular, iOS/Swift, AI-powered products, and full-stack web development.',
-      image: 'https://my-portfolio-six-self-85.vercel.app/assets/logov2-removebg-preview.png'
+
+    this.seo.setJsonLd('person', {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': `${this.seo.siteUrl}/#person`,
+      name: 'Mihajlo Petrovic',
+      url: this.seo.siteUrl,
+      image: this.seo.absoluteUrl('assets/myImage.jpg'),
+      jobTitle: 'Software Engineer',
+      email: 'mailto:mihajlop98@gmail.com',
+      worksFor: { '@type': 'Organization', name: 'Raiffeisen Bank' },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Belgrade',
+        addressCountry: 'RS'
+      },
+      knowsAbout: [
+        'Angular', 'TypeScript', 'Swift', 'SwiftUI', 'iOS development',
+        'C#', 'Node.js', 'FinTech', 'AI coding agents'
+      ],
+      sameAs: ['https://linkedin.com/in/mihajlo-petrovic-355810197/']
+    });
+
+    this.seo.setJsonLd('website', {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Mihajlo Petrovic',
+      url: this.seo.siteUrl,
+      inLanguage: 'en',
+      author: { '@id': `${this.seo.siteUrl}/#person` }
     });
   }
 }

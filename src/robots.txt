@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
 Disallow: /assets/icons/
 
-Sitemap: https://my-portfolio-six-self-85.vercel.app/sitemap.xml
+Sitemap: https://mihajlopetrovic.me/sitemap.xml

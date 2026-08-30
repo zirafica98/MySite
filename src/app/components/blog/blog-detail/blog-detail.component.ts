@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BlogService, BlogPost } from '../../../services/blog.service';
@@ -233,9 +233,44 @@ import { trigger, transition, style, animate } from '@angular/animations';
       border-top: 2px solid #f3f4f6;
       margin: 3rem 0;
     }
+    /* Markdown tables: scroll on narrow screens instead of overflowing the page */
+    :host ::ng-deep .prose-article table {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      overflow-x: auto;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 1rem;
+    }
+    :host ::ng-deep .prose-article th,
+    :host ::ng-deep .prose-article td {
+      padding: 0.75rem 1.25rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    :host ::ng-deep .prose-article th {
+      color: #111827;
+      font-weight: 700;
+      border-bottom: 2px solid #e5e7eb;
+      white-space: nowrap;
+    }
+    :host ::ng-deep .prose-article td {
+      border-bottom: 1px solid #f3f4f6;
+    }
+    :host ::ng-deep .prose-article tbody tr:last-child td {
+      border-bottom: none;
+    }
+    :host-context(.dark) ::ng-deep .prose-article th {
+      color: #f9fafb;
+      border-bottom-color: #374151;
+    }
+    :host-context(.dark) ::ng-deep .prose-article td {
+      border-bottom-color: #1f2937;
+    }
   `]
 })
-export class BlogDetailComponent implements OnInit {
+export class BlogDetailComponent implements OnInit, OnDestroy {
   post: BlogPost | null = null;
   renderedContent = '';
   loading = true;
@@ -260,26 +295,94 @@ export class BlogDetailComponent implements OnInit {
         this.post = post;
         if (post) {
           try {
-            const parsed = await marked.parse(post.content);
+            const parsed = await marked.parse(this.stripLeadingTitle(post.content));
             this.renderedContent = typeof parsed === 'string' ? parsed : String(parsed);
           } catch (err) {
             console.error('Error parsing markdown:', err);
             this.renderedContent = post.content;
           }
-          this.seo.setPageTitle(post.title);
-          this.seo.setMetaDescription(post.excerpt || post.title);
-          this.seo.setOpenGraphTags({
-            title: post.title,
-            description: post.excerpt || post.title,
-            image: post.cover_image,
-            type: 'article'
-          });
+          this.applySeo(post);
         }
         this.loading = false;
       },
       error: () => {
         this.loading = false;
       }
+    });
+  }
+
+  /**
+   * The page header already renders the title as the H1, so drop a leading
+   * `# Title` from the markdown — it would produce a duplicate H1.
+   */
+  private stripLeadingTitle(content: string): string {
+    return content.replace(/^\s*#\s+[^\n]*\n+/, '');
+  }
+
+  ngOnDestroy() {
+    // Structured data is per-article, so it must not survive navigation.
+    this.seo.removeJsonLd('article');
+    this.seo.removeJsonLd('breadcrumb');
+    this.seo.clearArticleMeta();
+  }
+
+  private applySeo(post: BlogPost) {
+    const path = `/blog/${post.slug}`;
+    const description = post.excerpt || post.title;
+    const url = this.seo.absoluteUrl(path);
+    const image = this.seo.absoluteUrl(post.cover_image || this.seo.defaultImage);
+
+    this.seo.applyPage({
+      title: post.title,
+      description,
+      path,
+      image,
+      keywords: (post.tags || []).join(', '),
+      type: 'article',
+      article: {
+        publishedTime: post.created_at,
+        modifiedTime: post.updated_at,
+        section: post.categories?.[0],
+        tags: post.tags
+      }
+    });
+
+    this.seo.setJsonLd('article', {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      headline: post.title,
+      description,
+      image: [image],
+      url,
+      datePublished: post.created_at,
+      dateModified: post.updated_at,
+      wordCount: post.content.split(/\s+/).length,
+      timeRequired: `PT${post.read_time || 1}M`,
+      keywords: (post.tags || []).join(', '),
+      articleSection: post.categories || [],
+      inLanguage: 'en',
+      author: {
+        '@type': 'Person',
+        '@id': `${this.seo.siteUrl}/#person`,
+        name: 'Mihajlo Petrovic',
+        url: this.seo.siteUrl,
+        jobTitle: 'Software Engineer',
+        sameAs: ['https://linkedin.com/in/mihajlo-petrovic-355810197/']
+      },
+      publisher: {
+        '@id': `${this.seo.siteUrl}/#person`
+      }
+    });
+
+    this.seo.setJsonLd('breadcrumb', {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: this.seo.siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: this.seo.absoluteUrl('/blog') },
+        { '@type': 'ListItem', position: 3, name: post.title, item: url }
+      ]
     });
   }
 

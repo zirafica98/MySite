@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mihajlo Petrovic — Blog</title>
+    <link>https://mihajlopetrovic.me/blog</link>
+    <description>Software engineering, product thinking, and lessons learned from building real products.</description>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Aug 2026 10:00:00 GMT</lastBuildDate>
+    <atom:link href="https://mihajlopetrovic.me/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Spec-Driven Development: The Antidote to Vibe Coding</title>
+      <link>https://mihajlopetrovic.me/blog/spec-driven-development-vs-vibe-coding</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/spec-driven-development-vs-vibe-coding</guid>
+      <description>When generating code takes minutes, the specification becomes the durable artifact and the code becomes an output. What a spec should contain, where it lives, and when vibe coding is still the right call.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Sun, 30 Aug 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>AI Agents in Practice: BMAD, MCP, and SourceKit-LSP</title>
+      <link>https://mihajlopetrovic.me/blog/ai-agents-in-practice-bmad-mcp-sourcekit</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/ai-agents-in-practice-bmad-mcp-sourcekit</guid>
+      <description>A practical look at the plumbing around AI coding agents: the BMAD method for planning, MCP for tooling, and SourceKit-LSP for real Swift code intelligence - what each one does, how to set it up, and where it actually pays off.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Fri, 28 Aug 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Local LLMs on Apple Silicon: An Honest Verdict</title>
+      <link>https://mihajlopetrovic.me/blog/local-llms-apple-silicon</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/local-llms-apple-silicon</guid>
+      <description>How much RAM you actually need, what quantisation costs you, which tools are worth installing - and a clear answer on where a laptop model beats an API and where it is not remotely close.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Fri, 14 Aug 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>AI in Regulated FinTech: The Engineering Constraints</title>
+      <link>https://mihajlopetrovic.me/blog/ai-in-regulated-fintech</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/ai-in-regulated-fintech</guid>
+      <description>What changes when the software is a bank&apos;s: data classification and residency, audit trails, the hard line between drafting and deciding, model upgrades as change management - and why internal developer tooling is where to start.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>FinTech</category>
+      <category>AI</category>
+      <pubDate>Tue, 04 Aug 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>AI Code Review: What It Catches and What It Misses</title>
+      <link>https://mihajlopetrovic.me/blog/ai-code-review-in-practice</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/ai-code-review-in-practice</guid>
+      <description>An honest breakdown of where an AI reviewer genuinely outperforms a tired human, where it is blind by construction, and the three configuration mistakes that make a team mute the bot in week two.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Tue, 21 Jul 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Evals: How to Test a Feature That Never Gives the Same Answer Twice</title>
+      <link>https://mihajlopetrovic.me/blog/evals-testing-llm-features</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/evals-testing-llm-features</guid>
+      <description>You cannot unit-test an LLM feature, so most teams ship prompt changes on vibes and break things silently. How to build a golden set, assert cheaply before reaching for a judge model, and wire it all into CI.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Fri, 10 Jul 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Shipping an LLM Feature in an Angular App</title>
+      <link>https://mihajlopetrovic.me/blog/llm-feature-angular-app</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/llm-feature-angular-app</guid>
+      <description>Prototyping an AI feature takes an afternoon; shipping one takes longer, and almost none of the extra time is prompting. Streaming with SSE, cancellation, rate limits, caching and cost control - with the Angular and Node code.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <category>Frontend</category>
+      <pubDate>Tue, 30 Jun 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>SwiftUI for Angular Developers: A Practical Guide</title>
+      <link>https://mihajlopetrovic.me/blog/swiftui-for-angular-developers</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/swiftui-for-angular-developers</guid>
+      <description>Coming to SwiftUI from Angular, the concepts map more cleanly than you expect - and the places they do not map are exactly where you lose a week. Here is what transfers, what traps you, and how to pick the right state wrapper the first time.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>iOS</category>
+      <pubDate>Fri, 12 Jun 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>RAG vs Long Context: Do You Actually Need a Vector Database?</title>
+      <link>https://mihajlopetrovic.me/blog/rag-vs-long-context</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/rag-vs-long-context</guid>
+      <description>Million-token context windows and prompt caching changed the maths. How to tell whether your corpus needs a real retrieval pipeline or just needs to be pasted into the prompt - and how to build retrieval properly if it does.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Fri, 22 May 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>My Daily AI Workflow in the Terminal</title>
+      <link>https://mihajlopetrovic.me/blog/daily-ai-workflow-terminal</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/daily-ai-workflow-terminal</guid>
+      <description>No chat window, no magic - a concrete account of how I actually use coding agents day to day: instructions files, plan-first prompting, sub-agents, hooks, worktrees, and the things I deliberately never delegate.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Sat, 09 May 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Building Your First MCP Server</title>
+      <link>https://mihajlopetrovic.me/blog/building-your-first-mcp-server</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/building-your-first-mcp-server</guid>
+      <description>MCP lets you write one integration that any AI client can use. A minimal working server in TypeScript, plus the design lessons that only show up after you have built one badly.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Fri, 24 Apr 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Context Engineering: Why Your AI Agent Forgets What You Told It</title>
+      <link>https://mihajlopetrovic.me/blog/context-engineering-for-ai-agents</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/context-engineering-for-ai-agents</guid>
+      <description>Agents do not get worse over a long session - their context does. What actually fills a context window, why quality degrades before you hit the limit, and five habits that make the model noticeably smarter for free.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>AI</category>
+      <pubDate>Wed, 08 Apr 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>About Me — From Code to Career</title>
+      <link>https://mihajlopetrovic.me/blog/about-me-from-code-to-career</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/about-me-from-code-to-career</guid>
+      <description>A personal introduction to who I am, how I got into software engineering, and what drives me every day as a developer.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Personal</category>
+      <category>Career</category>
+      <pubDate>Sun, 15 Mar 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Why I Chose Angular in 2024 (and Still Use It)</title>
+      <link>https://mihajlopetrovic.me/blog/why-i-chose-angular-2024</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/why-i-chose-angular-2024</guid>
+      <description>React gets all the hype, but Angular is the framework I keep coming back to. Here&apos;s why I think it&apos;s underrated for serious applications.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>Frontend</category>
+      <pubDate>Fri, 20 Feb 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Building Banking Software: Lessons from the Trenches</title>
+      <link>https://mihajlopetrovic.me/blog/building-banking-software-lessons</link>
+      <guid isPermaLink="true">https://mihajlopetrovic.me/blog/building-banking-software-lessons</guid>
+      <description>Working in FinTech has taught me things no tutorial ever could. Here are my honest lessons from building software that handles real people&apos;s money.</description>
+      <author>mihajlop98@gmail.com (Mihajlo Petrovic)</author>
+      <category>Engineering</category>
+      <category>FinTech</category>
+      <pubDate>Sat, 10 Jan 2026 10:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

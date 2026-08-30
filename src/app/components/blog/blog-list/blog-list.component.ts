@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BlogService, BlogPost } from '../../../services/blog.service';
@@ -120,13 +120,19 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
                 All ({{ posts.length }})
               </button>
               <button
-                *ngFor="let tag of allTags"
+                *ngFor="let tag of visibleTags()"
                 (click)="selectedTag.set(tag)"
                 class="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
                 [ngClass]="selectedTag() === tag
                   ? 'bg-gray-900 dark:bg-primary-500 text-white shadow-md'
                   : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'">
                 #{{ tag }}
+              </button>
+              <button
+                *ngIf="allTags.length > tagPreviewCount"
+                (click)="showAllTags.set(!showAllTags())"
+                class="px-4 py-2 rounded-full text-sm font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+                {{ showAllTags() ? 'Show fewer' : '+ ' + (allTags.length - tagPreviewCount) + ' more' }}
               </button>
             </div>
           </div>
@@ -208,13 +214,21 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
   `,
   styles: []
 })
-export class BlogListComponent implements OnInit {
+export class BlogListComponent implements OnInit, OnDestroy {
   posts: BlogPost[] = [];
   loading = true;
 
   selectedTag = signal<string>('All');
 
   allTags: string[] = [];
+
+  /** How many tags to show before collapsing the long tail. */
+  readonly tagPreviewCount = 12;
+  showAllTags = signal(false);
+
+  visibleTags = computed(() =>
+    this.showAllTags() ? this.allTags : this.allTags.slice(0, this.tagPreviewCount)
+  );
 
   filteredPosts = computed(() => {
     const tag = this.selectedTag();
@@ -228,9 +242,18 @@ export class BlogListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.seo.setPageTitle('Blog');
-    this.seo.setMetaDescription('Software engineering, product thinking, and lessons learned from building real products.');
+    this.seo.applyPage({
+      title: 'Blog — Software Engineering, Angular, iOS & AI',
+      description:
+        'Articles on software engineering, Angular, SwiftUI, AI coding agents and lessons learned from building real products in FinTech.',
+      path: '/blog',
+      keywords: 'software engineering blog, angular, swiftui, ai agents, fintech, Mihajlo Petrovic'
+    });
     this.loadPosts();
+  }
+
+  ngOnDestroy() {
+    this.seo.removeJsonLd('blog');
   }
 
   loadPosts() {
@@ -238,13 +261,40 @@ export class BlogListComponent implements OnInit {
     this.blogService.getPosts(true).subscribe({
       next: (posts) => {
         this.posts = posts;
-        // Collect unique tags from all posts
-        const tagSet = new Set<string>();
-        posts.forEach(p => p.tags?.forEach(t => tagSet.add(t)));
-        this.allTags = Array.from(tagSet);
+        // Rank tags by how many posts use them, so the preview shows the useful ones
+        const counts = new Map<string, number>();
+        posts.forEach(p => p.tags?.forEach(t => counts.set(t, (counts.get(t) ?? 0) + 1)));
+        this.allTags = Array.from(counts.entries())
+          .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+          .map(([tag]) => tag);
+        this.setBlogJsonLd(posts);
         this.loading = false;
       },
       error: () => { this.loading = false; }
+    });
+  }
+
+  /** Lets search engines see the article list even before they render the cards. */
+  private setBlogJsonLd(posts: BlogPost[]) {
+    this.seo.setJsonLd('blog', {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      '@id': this.seo.absoluteUrl('/blog'),
+      name: 'Mihajlo Petrovic — Blog',
+      description:
+        'Software engineering, product thinking, and lessons learned from building real products.',
+      inLanguage: 'en',
+      author: { '@id': `${this.seo.siteUrl}/#person` },
+      blogPost: posts.map(post => ({
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.excerpt || post.title,
+        url: this.seo.absoluteUrl(`/blog/${post.slug}`),
+        datePublished: post.created_at,
+        dateModified: post.updated_at,
+        keywords: (post.tags || []).join(', '),
+        author: { '@id': `${this.seo.siteUrl}/#person` }
+      }))
     });
   }
 

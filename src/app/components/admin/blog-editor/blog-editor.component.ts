@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-blog-editor',
@@ -28,6 +29,7 @@ import { RouterModule } from '@angular/router';
             <li>Update all fields: <code class="bg-gray-100 px-1 rounded font-mono">id</code>, <code class="bg-gray-100 px-1 rounded font-mono">title</code>, <code class="bg-gray-100 px-1 rounded font-mono">slug</code>, <code class="bg-gray-100 px-1 rounded font-mono">content</code>, etc.</li>
             <li>Set <code class="bg-gray-100 px-1 rounded font-mono">"published": true</code> when ready to go live</li>
             <li>Save the file — the blog list updates automatically</li>
+            <li>Run <code class="bg-gray-100 px-2 py-0.5 rounded font-mono">npm run seo</code> to refresh <code class="bg-gray-100 px-1 rounded font-mono">sitemap.xml</code> and <code class="bg-gray-100 px-1 rounded font-mono">feed.xml</code> (also runs automatically on <code class="bg-gray-100 px-1 rounded font-mono">npm run build</code>)</li>
           </ol>
 
           <div class="mt-8 bg-gray-900 rounded-xl p-6 overflow-x-auto">
@@ -40,9 +42,20 @@ import { RouterModule } from '@angular/router';
   `,
   styles: []
 })
-export class BlogEditorComponent {
+export class BlogEditorComponent implements OnInit {
+  constructor(private seo: SeoService) {}
+
+  ngOnInit() {
+    this.seo.applyPage({
+      title: 'New post',
+      description: 'Internal content editor.',
+      path: '/admin/new',
+      noIndex: true
+    });
+  }
+
   examplePost = `{
-  "id": "4",
+  "id": "6",
   "title": "Your Post Title",
   "slug": "your-post-slug",
   "excerpt": "A short summary of the post.",

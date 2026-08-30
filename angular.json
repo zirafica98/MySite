@@ -30,6 +30,7 @@
               "src/manifest.webmanifest",
               "src/robots.txt",
               "src/sitemap.xml",
+              "src/feed.xml",
               "src/assets"
             ],
             "styles": [
@@ -51,8 +52,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4kb",
+                  "maximumError": "8kb"
                 }
               ],
               "outputHashing": "all",

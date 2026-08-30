@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-not-found',
@@ -75,4 +76,15 @@ import { RouterModule } from '@angular/router';
   `,
   styles: []
 })
-export class NotFoundComponent {}
+export class NotFoundComponent implements OnInit {
+  constructor(private seo: SeoService) {}
+
+  ngOnInit() {
+    this.seo.applyPage({
+      title: 'Page not found',
+      description: 'The page you are looking for does not exist.',
+      path: '/404',
+      noIndex: true
+    });
+  }
+}
